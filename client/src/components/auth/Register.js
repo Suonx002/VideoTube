@@ -1,19 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './Register.css';
 import Alerts from '../layout/Alerts';
 import { setAlert, clearAlert } from '../../actions/alertAction';
-import { registerUser } from '../../actions/authAction';
+import { registerUser, clearErrors } from '../../actions/authAction';
 
-const Register = ({ setAlert, clearAlert }) => {
+const Register = ({
+  setAlert,
+  clearAlert,
+  registerUser,
+  auth,
+  clearErrors,
+  history
+}) => {
+  const { error, isAuthenticated } = auth;
+
   const [user, setUser] = useState({
     name: '',
     email: '',
     password: '',
     password2: ''
   });
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push('/');
+    }
+
+    if (error) {
+      setAlert(error, 'danger');
+      setTimeout(() => {
+        clearAlert();
+        clearErrors();
+      }, 1500);
+    }
+  }, [error, isAuthenticated, history]);
 
   const { name, email, password, password2 } = user;
 
@@ -24,15 +47,17 @@ const Register = ({ setAlert, clearAlert }) => {
 
     if (name === '' || email === '' || password === '' || password2 === '') {
       setAlert('Please fill out all fields', 'warning');
-    }
-
-    if (password !== password2) {
+      setTimeout(() => {
+        clearAlert();
+      }, 1500);
+    } else if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
+      setTimeout(() => {
+        clearAlert();
+      }, 1500);
+    } else {
+      registerUser({ name, email, password });
     }
-
-    setTimeout(() => {
-      clearAlert();
-    }, 1500);
   };
 
   return (
@@ -79,4 +104,13 @@ const Register = ({ setAlert, clearAlert }) => {
   );
 };
 
-export default connect(null, { setAlert, clearAlert })(Register);
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, {
+  setAlert,
+  clearAlert,
+  registerUser,
+  clearErrors
+})(Register);

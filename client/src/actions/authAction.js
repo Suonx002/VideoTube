@@ -22,6 +22,22 @@ export const registerUser = formData => async dispatch => {
   try {
     const res = await axios.post('/api/users', formData, config);
 
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data
+    });
     console.log(res);
-  } catch (err) {}
+  } catch (err) {
+    // console.log(err.response.data.msg);
+    dispatch({
+      type: REGISTER_FAIL,
+      payload: err.response.data.msg
+    });
+  }
+};
+
+export const clearErrors = () => {
+  return {
+    type: CLEAR_ERRORS
+  };
 };
