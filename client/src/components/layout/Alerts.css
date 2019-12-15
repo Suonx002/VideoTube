@@ -1,0 +1,15 @@
+.alert {
+  padding: 0.5rem;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.alert-danger {
+  background-color: #e74c3c;
+}
+
+.alert-warning {
+  background-color: #f1c40f;
+}
