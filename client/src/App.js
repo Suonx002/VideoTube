@@ -8,6 +8,9 @@ import Home from './components/pages/Home';
 import Navbar from './components/layout/Navbar';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import setAuthToken from './utils/setAuthToken';
+
+setAuthToken(localStorage.token);
 
 function App() {
   return (

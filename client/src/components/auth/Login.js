@@ -1,18 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Alerts from '../layout/Alerts';
 import { setAlert, clearAlert } from '../../actions/alertAction';
+import { loginUser, clearErrors } from '../../actions/authAction';
+
 import './Login.css';
 
-const Login = ({ setAlert, clearAlert }) => {
+const Login = ({
+  setAlert,
+  clearAlert,
+  loginUser,
+  clearErrors,
+  auth,
+  history,
+  loadUser
+}) => {
+  const { error, isAuthenticated } = auth;
+
   const [user, setUser] = useState({
     email: '',
     password: ''
   });
 
   const { email, password } = user;
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push('/');
+      // loadUser();
+    }
+    if (error) {
+      setAlert('Invalid Credentials', 'danger');
+      setTimeout(() => {
+        clearAlert();
+        clearErrors();
+      }, 1500);
+    }
+    //eslint-disable-next-line
+  }, [error, isAuthenticated, history]);
 
   const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
 
@@ -24,6 +51,8 @@ const Login = ({ setAlert, clearAlert }) => {
       setTimeout(() => {
         clearAlert();
       }, 1500);
+    } else {
+      loginUser({ email, password });
     }
   };
 
@@ -57,4 +86,13 @@ const Login = ({ setAlert, clearAlert }) => {
   );
 };
 
-export default connect(null, { setAlert, clearAlert })(Login);
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, {
+  setAlert,
+  clearAlert,
+  loginUser,
+  clearErrors
+})(Login);

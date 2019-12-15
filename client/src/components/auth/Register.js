@@ -26,6 +26,12 @@ const Register = ({
 
   useEffect(() => {
     if (isAuthenticated) {
+      setUser({
+        name: '',
+        email: '',
+        password: '',
+        password2: ''
+      });
       history.push('/');
     }
 
@@ -34,8 +40,9 @@ const Register = ({
       setTimeout(() => {
         clearAlert();
         clearErrors();
-      }, 1500);
+      }, 2000);
     }
+    //eslint-disable-next-line
   }, [error, isAuthenticated, history]);
 
   const { name, email, password, password2 } = user;
@@ -47,17 +54,17 @@ const Register = ({
 
     if (name === '' || email === '' || password === '' || password2 === '') {
       setAlert('Please fill out all fields', 'warning');
-      setTimeout(() => {
-        clearAlert();
-      }, 1500);
+    } else if (password.length < 6) {
+      setAlert('Password must be at least 6 characters', 'warning');
     } else if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
-      setTimeout(() => {
-        clearAlert();
-      }, 1500);
     } else {
       registerUser({ name, email, password });
     }
+
+    setTimeout(() => {
+      clearAlert();
+    }, 2000);
   };
 
   return (

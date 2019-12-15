@@ -1,13 +1,13 @@
 .navbar {
   background-color: #ecf0f1;
-  padding: 1rem;
+  padding: 0.8rem;
 }
 
 .navbar-left-link a,
 .navbar-right-link a {
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   padding: 0.6rem;
   margin: 0 0.5rem;
   color: #2c3e50;
@@ -21,4 +21,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.navbar-intro {
+  pointer-events: none;
+  cursor: default;
+  color: #3498db !important;
 }
