@@ -10,6 +10,7 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './components/routing/PrivateRoute';
+import VideoDetail from './components/layout/VideoDetail';
 
 setAuthToken(localStorage.token);
 
@@ -23,6 +24,7 @@ function App() {
             <PrivateRoute exact path='/' component={Home} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
+            <Route exact path='/video/:id' component={VideoDetail} />
           </Switch>
         </div>
       </BrowserRouter>

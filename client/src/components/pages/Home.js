@@ -8,11 +8,11 @@ import VideoList from '../layout/VideoList';
 
 const Home = ({ loadUser, auth }) => {
   const { token } = auth;
+
   useEffect(() => {
     if (token) {
       loadUser();
     }
-
     //eslint-disable-next-line
   }, []);
 

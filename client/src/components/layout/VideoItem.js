@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom';
 import './VideoItem.css';
 const VideoItem = ({ video }) => {
   return (
-    <Link to={`/${video.id.videoId}`} className='video-item-link'>
+    <Link
+      to={`/video/${video.id.videoId}`}
+      className='video-item-link'
+      key={video.id.videoId}>
       <div className='video-item-card'>
         <img
           src={video.snippet.thumbnails.medium.url}
