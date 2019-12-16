@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { loadUser } from '../../actions/authAction';
 
 import SearchBar from '../layout/SearchBar';
+import VideoList from '../layout/VideoList';
 
 const Home = ({ loadUser, auth }) => {
   const { token } = auth;
@@ -16,9 +17,14 @@ const Home = ({ loadUser, auth }) => {
   }, []);
 
   return (
-    <div className='home-search-bar'>
-      <SearchBar />
-    </div>
+    <>
+      <div className='home-search-bar'>
+        <SearchBar />
+      </div>
+      <div className='home-video-list'>
+        <VideoList />
+      </div>
+    </>
   );
 };
 

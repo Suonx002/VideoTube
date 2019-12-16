@@ -15,7 +15,7 @@ export const fetchVideos = searchTerm => async dispatch => {
       params: {
         q: searchTerm,
         part: 'snippet',
-        maxResults: 10,
+        maxResults: 12,
         key: youtubeApiKey
       }
     });
