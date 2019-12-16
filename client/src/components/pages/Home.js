@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { loadUser } from '../../actions/authAction';
 
+import SearchBar from '../layout/SearchBar';
+
 const Home = ({ loadUser, auth }) => {
   const { token } = auth;
   useEffect(() => {
@@ -14,9 +16,9 @@ const Home = ({ loadUser, auth }) => {
   }, []);
 
   return (
-    <>
-      <h1>Home Component</h1>
-    </>
+    <div className='home-search-bar'>
+      <SearchBar />
+    </div>
   );
 };
 

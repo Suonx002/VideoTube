@@ -9,6 +9,7 @@ import Navbar from './components/layout/Navbar';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import setAuthToken from './utils/setAuthToken';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 setAuthToken(localStorage.token);
 
@@ -19,7 +20,7 @@ function App() {
         <Navbar />
         <div className='app-container'>
           <Switch>
-            <Route exact path='/' component={Home} />
+            <PrivateRoute exact path='/' component={Home} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
           </Switch>

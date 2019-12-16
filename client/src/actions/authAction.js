@@ -14,12 +14,12 @@ import {
 
 // load users
 export const loadUser = () => async dispatch => {
-  console.log(localStorage.token);
+  // console.log(localStorage.token);
   setAuthToken(localStorage.token);
-  console.log(setAuthToken(localStorage.token));
+  // console.log(setAuthToken(localStorage.token));
   try {
     const res = await axios.get('/api/auth');
-    console.log(res);
+    // console.log(res);
     dispatch({
       type: USER_LOADED,
       payload: res.data

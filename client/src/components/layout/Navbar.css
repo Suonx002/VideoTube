@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #ecf0f1;
+  background-color: #fff;
   padding: 0.8rem;
 }
 
@@ -27,4 +27,12 @@
   pointer-events: none;
   cursor: default;
   color: #3498db !important;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar-left-link a,
+  .navbar-right-link a {
+    padding: 0.3rem;
+    margin: 0 0.5rem;
+  }
 }

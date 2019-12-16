@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 import { SET_ALERT, CLEAR_ALERT } from './types';
 
 export const setAlert = (msg, type) => {
