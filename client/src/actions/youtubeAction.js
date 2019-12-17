@@ -3,10 +3,10 @@ import { VIDEOS_ERROR, FETCH_VIDEOS, CLEAR_VIDEOS } from './types';
 
 let youtubeApiKey;
 
-if (process.env.NODE_ENV !== 'production') {
-  youtubeApiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
-} else {
+if (process.env.NODE_ENV === 'production') {
   youtubeApiKey = process.env.YOUTUBE_API_KEY;
+} else {
+  youtubeApiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
 }
 
 export const fetchVideos = searchTerm => async dispatch => {
